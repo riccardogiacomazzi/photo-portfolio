@@ -18,7 +18,6 @@ const FlickrPhotos = async () => {
       const originalSize = response.data.sizes.size.find((size) => size.label === "Original");
       const largeSize = response.data.sizes.size.find((size) => size.label === "Large");
       const smallSize = response.data.sizes.size.find((size) => size.label === "Small");
-      console.log(largeSize);
 
       return { small: smallSize.source, large: largeSize.source, original: originalSize.source };
     } catch (error) {

@@ -55,7 +55,6 @@
 
 /* WORKS */
 .box-tag {
-  display: inline-block;
   height: 80vh;
   margin: 20px;
   width: 30%;
@@ -82,14 +81,38 @@
 
 .button-works {
   height: 80vh;
+  border: solid green;
+}
+
+.big-photo-container-works {
+  width: 100vw;
+  height: 80vh;
+  overflow: auto;
+  display: flex;
+  margin-right: 40px;
+}
+
+.image-big-zoom-works {
+  height: 200%;
+  width: 200%;
 }
 
 @media (max-width: 700px) {
   .box-tag {
-    width: 100vh;
+    width: 100%;
+    height: 100%;
+    margin: auto;
   }
   .button-works {
     height: 10vh;
+  }
+
+  .bottom-fixed-box {
+    height: 15%;
+  }
+
+  .bottom-fixed-box {
+    justify-content: space-between;
   }
 }
 

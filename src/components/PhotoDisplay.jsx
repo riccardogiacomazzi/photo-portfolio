@@ -68,8 +68,6 @@ const PhotoDisplay = ({ itemData, size }) => {
     onSwipedDown: zoom === false && handlePrevPic,
   });
 
-  //pinch zoom
-
   return (
     <div onClick={handleInitialClick} className="main-flex">
       <Box

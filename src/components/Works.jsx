@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Button, Typography, ImageList, ImageListItem, Skeleton } from "@mui/material";
+import { Box, Button, Typography, ImageList, ImageListItem, Skeleton, Modal } from "@mui/material";
+import { useSwipeable } from "react-swipeable";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const Works = ({ itemData, visibleTags, size }) => {
   // const maxIndex = size.width > 700 ? 3 : 1;
   const [maxIndex, setMaxIndex] = useState(size.width > 700 ? 3 : 1);
-  const [indexShow, setIndexShow] = useState({ min: 0, max: maxIndex });
-  const [tagSelected, setTagSelected] = useState(false);
-  const [albumShow, setAlbumShow] = useState([]);
+  const [indexShow, setIndexShow] = useState({ min: 0, max: 1 });
+  const [selectedImage, setSelectedImage] = useState();
+  const [zoom, setZoom] = useState(false);
 
   const boxRef = useRef(null);
 
@@ -31,16 +32,20 @@ const Works = ({ itemData, visibleTags, size }) => {
 
   //album navigation
   const handlePrevAlbum = () => {
-    if (indexShow.max > 3) {
-      setIndexShow({ min: indexShow.min - maxIndex, max: indexShow.max - maxIndex });
+    if (indexShow.min > 0) {
+      setIndexShow({ min: indexShow.min - 1, max: indexShow.max - 1 });
       triggerScrollTop();
+    } else {
+      setIndexShow({ min: itemByTag.length - 1, max: itemByTag.length });
     }
   };
 
   const handleNextAlbum = () => {
-    if (indexShow.max !== itemByTag.length) {
-      setIndexShow({ min: indexShow.min + maxIndex, max: indexShow.max + maxIndex });
+    if (indexShow.max < itemByTag.length) {
+      setIndexShow({ min: indexShow.min + 1, max: indexShow.max + 1 });
       triggerScrollTop();
+    } else {
+      setIndexShow({ min: 0, max: 1 });
     }
   };
 
@@ -55,42 +60,95 @@ const Works = ({ itemData, visibleTags, size }) => {
     triggerScrollTop();
   }, [indexShow]);
 
-  //selection of album to display
-  const handleTagSelect = (item) => {
-    setTagSelected(true);
-    setAlbumShow(item);
+  //selection of image to display
+  const handleSelectImage = (item) => {
+    setZoom(false);
+    setSelectedImage(item);
+    console.log(item);
   };
 
+  //zoom for main image
+  const handleClickZoom = () => {
+    setZoom(!zoom);
+  };
+
+  //swipe on bottom menu on mobile
+  const handlers = useSwipeable({
+    onSwipedLeft: handlePrevAlbum,
+    onSwipedRight: handleNextAlbum,
+  });
+
   return (
-    <Box className="main-flex" sx={{ flexDirection: "row", overflowX: "auto" }}>
-      <Button onClick={handlePrevAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
-        <ArrowBackIosIcon />
-      </Button>
+    // RENDER TAG COLUMNS VIEW
+
+    <Box
+      className="main-flex"
+      sx={{
+        flexDirection: "row",
+      }}
+    >
+      {size.width > 700 && (
+        <Button onClick={handlePrevAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
+          <ArrowBackIosIcon />
+        </Button>
+      )}
       {itemByTag.slice(indexShow.min, indexShow.max).map((item, index) => {
         return (
-          <Box
-            key={index}
-            className="box-tag"
-            ref={boxRef}
-            onClick={() => handleTagSelect(item)}
-            sx={{ position: "relative" }}
-          >
+          <Box key={index} className="box-tag" ref={boxRef}>
             <ImageList variant="masonry" cols={1} gap={5}>
               {item.img.map((img, index) => (
-                <ImageListItem key={index}>
+                <ImageListItem key={index} onClick={() => handleSelectImage(img)}>
                   <img srcSet={`${img.original}`} src={`${img.original}`} alt={img.title} loading="lazy" />
                 </ImageListItem>
               ))}
             </ImageList>
-            <Box className="bottom-fixed-box">
+
+            {/* Opaque bottom box with tag and nav buttons - ONLY MOBILE */}
+            <Box className="bottom-fixed-box" {...handlers}>
+              {size.width < 700 && (
+                <Button onClick={handlePrevAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
+                  <ArrowBackIosIcon />
+                </Button>
+              )}
+
               <Typography color={"white"}>{item.tag}</Typography>
+
+              {size.width < 700 && (
+                <Button onClick={handleNextAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
+                  <ArrowForwardIosIcon />
+                </Button>
+              )}
             </Box>
           </Box>
         );
       })}
-      <Button onClick={handleNextAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
-        <ArrowForwardIosIcon />
-      </Button>
+      {size.width > 700 && (
+        <Button onClick={handleNextAlbum} className="button-works" style={{ border: "none", outline: "none" }}>
+          <ArrowForwardIosIcon />
+        </Button>
+      )}
+
+      {/* big photo container - rendered on WEB and only when a picture is selected */}
+      {size.width > 700 && selectedImage && (
+        <Box
+          className="big-photo-container-works"
+          sx={{
+            flexGrow: !selectedImage ? "initial" : 1,
+          }}
+        >
+          {/* conditionally renderes big image clicked */}
+          {size.width > 700 && (
+            <img
+              className={zoom === false ? "image-big" : "image-big-zoom-works"}
+              style={{ margin: " auto" }}
+              onClick={handleClickZoom}
+              srcSet={`${selectedImage.original}`}
+              src={`${selectedImage.original}`}
+              loading="lazy"
+            />
+          )}
+        </Box>
+      )}
     </Box>
   );
 };
