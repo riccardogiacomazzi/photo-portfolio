@@ -38,8 +38,9 @@ const Contact = ({ itemData, infoText, size }) => {
   return (
     <Box className="main-flex" sx={{ flexDirection: "row" }}>
       <Box className="contact-main-flex">
-        {size.width > 700 && <img className="info-image" src={itemData[0].img.original} />}
-
+        <Box sx={{ maxWidth: "50%", display: "flex" }}>
+          {size.width > 700 && <img className="info-image" src={itemData[9].img.original} />}
+        </Box>
         <Box className="info-form-container">
           {/* INFO TEXT */}
           <Box className="info-box">

@@ -111,13 +111,13 @@
 
 .info-box {
   height: 50%;
-  width: 50%;
+  width: 70%;
   margin: 20px auto;
   overflow: auto;
 }
 
 .contact-form {
-  width: 50%;
+  width: 70%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -132,8 +132,12 @@
 }
 
 .info-image {
-  width: 50%;
+  height: auto;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
   overflow: hidden;
+  margin: auto;
   padding: 20px;
 }
 
