@@ -2,7 +2,6 @@ import "./App.css";
 import info from "./assets/info";
 import SimpleAppBar from "./components/SimpleAppBar";
 import { useState, useEffect } from "react";
-// import FlickrPhotos from "./services/flickrService";
 import FlickrAPI from "./services/flickrService";
 import PhotoDisplay from "./components/PhotoDisplay";
 import { useWindowSize } from "@uidotdev/usehooks";

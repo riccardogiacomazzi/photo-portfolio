@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Component } from "react";
 import { Box, Button, Typography, ImageList, ImageListItem, Skeleton, Modal } from "@mui/material";
 import { useSwipeable } from "react-swipeable";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -6,9 +6,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const Works = ({ itemData, visibleTags, size }) => {
   // const maxIndex = size.width > 700 ? 3 : 1;
-  const [maxIndex, setMaxIndex] = useState(size.width > 700 ? 3 : 1);
   const [indexShow, setIndexShow] = useState({ min: 0, max: 1 });
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedImageLinks, setSelectedImageLinks] = useState([]);
   const [zoom, setZoom] = useState(false);
 
   const boxRef = useRef(null);
@@ -30,6 +30,17 @@ const Works = ({ itemData, visibleTags, size }) => {
     itemByTag.push({ tag: tag, img: images });
   });
 
+  //scroll on top automatically on render, and when Index of album displayed is changed
+  const triggerScrollTop = () => {
+    if (boxRef.current) {
+      boxRef.current.scrollTop = 0;
+    }
+  };
+
+  useEffect(() => {
+    triggerScrollTop();
+  }, [indexShow]);
+
   //album navigation
   const handlePrevAlbum = () => {
     if (indexShow.min > 0) {
@@ -49,22 +60,36 @@ const Works = ({ itemData, visibleTags, size }) => {
     }
   };
 
-  //scroll on top automatically on render, and when Index of album displayed is changed
-  const triggerScrollTop = () => {
-    if (boxRef.current) {
-      boxRef.current.scrollTop = 0;
-    }
-  };
+  //picture navigation - up and down - web version
+  let links = [];
 
+  //KEYBOARD navigation
   useEffect(() => {
-    triggerScrollTop();
-  }, [indexShow]);
+    const handleKeyDown = (event) => {
+      switch (event.key) {
+        case "ArrowLeft":
+          handlePrevAlbum();
+          break;
+        case "ArrowRight":
+          handleNextAlbum();
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handlePrevAlbum, handleNextAlbum]);
 
   //selection of image to display
   const handleSelectImage = (item) => {
-    setZoom(false);
+    if (!selectedImage) {
+      setZoom(true);
+    } else setZoom(false);
     setSelectedImage(item);
-    console.log(item);
   };
 
   //zoom for main image
@@ -94,7 +119,12 @@ const Works = ({ itemData, visibleTags, size }) => {
       )}
       {itemByTag.slice(indexShow.min, indexShow.max).map((item, index) => {
         return (
-          <Box key={index} className="box-tag" ref={boxRef}>
+          <Box
+            key={index}
+            className="box-tag"
+            sx={{ width: selectedImage ? (size.width > 700 ? "25%" : "100%") : size.width > 700 ? "50%" : "100%" }}
+            ref={boxRef}
+          >
             <ImageList variant="masonry" cols={1} gap={5}>
               {item.img.map((img, index) => (
                 <ImageListItem key={index} onClick={() => handleSelectImage(img)}>

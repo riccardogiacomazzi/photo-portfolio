@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
@@ -56,19 +57,8 @@ const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
               onClick={() => handleMenuOpen()}
               color="inherit"
             >
-              <MenuIcon />
+              {menuOpen === false ? <MenuIcon /> : <CloseIcon />}
             </IconButton>
-
-            {/* mobile pages */}
-            <Menu id="menu-appbar">
-              {pages.map((page) => (
-                <MenuItem key={page}>
-                  <Typography textAlign="center" onClick={() => handlePageChange(page)}>
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
 
           {/* MOBILE VIEW NAME */}
@@ -82,8 +72,8 @@ const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
+              fontFamily: "sans-serif",
+              fontWeight: 300,
               letterSpacing: ".0.5rem",
               color: "inherit",
               textDecoration: "none",

@@ -57,7 +57,7 @@
 .box-tag {
   height: 80vh;
   margin: 20px;
-  width: 30%;
+  width: 45%;
   overflow: auto;
 }
 
@@ -89,7 +89,10 @@
   height: 80vh;
   overflow: auto;
   display: flex;
+  right: 50;
   margin-right: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-big-zoom-works {
@@ -119,7 +122,7 @@
 /* CONTACT FORM */
 .contact-main-flex {
   display: flex;
-  width: 80%;
+  width: 100%;
   max-height: 100%;
 }
 
