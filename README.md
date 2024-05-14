@@ -1,4 +1,5 @@
 # Photo Portfolio
+
 # https://rg-photo-portfolio.web.app/
 
 This portfolio has been developed in React and JavaScript. It features integration with Flickr's API to retrieve the displayed pictures and their properties.
@@ -16,3 +17,7 @@ Features and Stack:
 - MaterialUI framework is used in combination with CSS to provide a responsive styling that seamlessy adapt to web and mobile browsing.
 - EmailJS is used in handling the submission of the contact form.
 - The app is hosted on Firebase.
+
+# Setup
+
+- src/services/flickrService.js needs to receive the variables VITE_API_KEY and VITE_USER_ID from a .env file.
