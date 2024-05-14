@@ -6,8 +6,9 @@ const FlickrPhotos = async () => {
 
   let itemData = [];
 
-  const apiKey = "497d7a1007b84844ce5da67556b24e39";
-  const userId = "187209277@N04";
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const userId = import.meta.env.VITE_USER_ID;
+
   const baseUrl = `https://www.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${apiKey}&user_id=${userId}&format=json&nojsoncallback=1`;
 
   const fetchPhotoSize = async (photoId) => {
