@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { init, send } from "emailjs-com";
 
 const Contact = ({ itemData, infoText, size }) => {
@@ -16,11 +16,11 @@ const Contact = ({ itemData, infoText, size }) => {
   };
 
   //initialize emailJS service
-  init("_HTGH9bI_rh_9lvou");
+  init(import.meta.env.VITE_EMAILJS_INIT);
 
   const handleFormSubmit = async () => {
     try {
-      await send("service_b9lgnua", "template_rg81lz9", {
+      await send(import.meta.env.VITE_EMAILJS_SERVICE_KEY, import.meta.env.VITE_EMAILJS_TEMPLATE_KEY, {
         from_name: email,
         message: message,
       });
@@ -44,13 +44,32 @@ const Contact = ({ itemData, infoText, size }) => {
         <Box className="info-form-container">
           {/* INFO TEXT */}
           <Box className="info-box">
+            <Accordion defaultExpanded>
+              <AccordionSummary>
+                <Typography variant="h5">My Photography</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText.generalInfo }}></Typography>
+              </AccordionDetails>
+            </Accordion>
+
             {/* {infoText} */}
-            <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText }}></Typography>
+
+            <Accordion>
+              <AccordionSummary>
+                <Typography variant="h5">Technical Stuff and Website Information</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText.webDev }}></Typography>
+              </AccordionDetails>
+            </Accordion>
           </Box>
 
           {/* CONTACT FORM */}
           <Box className="contact-form">
-            <Typography align="center">Contact Me</Typography>
+            <Typography align="center" variant="h5">
+              Contact Me
+            </Typography>
             <TextField
               className="text-input"
               sx={{ marginBottom: "10px", marginTop: "10px" }}
