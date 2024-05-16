@@ -13,13 +13,14 @@ function App() {
   const [displayPage, setDisplayPage] = useState("Home");
   const [itemData, setItemData] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bgImage, setBgImage] = useState();
 
   const size = useWindowSize();
 
   //SETUP
   const siteName = "Photo Portfolio";
-  const pages = ["Works", "Info"];
-  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner", "Morocco", "Yerevan"];
+  const pages = ["Albums", "Info"];
+  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner"];
   const infoText = info;
 
   //photo fetching on app rendering
@@ -42,9 +43,11 @@ function App() {
         setMenuOpen={setMenuOpen}
       />
 
-      {displayPage === "Home" && menuOpen === false && <PhotoDisplay itemData={itemData} size={size} />}
-      {displayPage === "Info" && menuOpen === false && <Contact itemData={itemData} infoText={infoText} size={size} />}
-      {displayPage === "Works" && menuOpen === false && (
+      {displayPage === "Home" && menuOpen === false && (
+        <PhotoDisplay itemData={itemData} size={size} setBgImage={setBgImage} />
+      )}
+      {displayPage === "Info" && menuOpen === false && <Contact infoText={infoText} size={size} bgImage={bgImage} />}
+      {displayPage === "Albums" && menuOpen === false && (
         <Works itemData={itemData} visibleTags={visibleTags} size={size} />
       )}
       {menuOpen && (

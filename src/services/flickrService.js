@@ -72,6 +72,10 @@ const FlickrPhotos = async () => {
   return { itemData };
 };
 
-const FlickrAPI = { FlickrPhotos };
+const loadOne = async (url) => {
+  await axios.get(url);
+};
+
+const FlickrAPI = { FlickrPhotos, loadOne };
 
 export default FlickrAPI;

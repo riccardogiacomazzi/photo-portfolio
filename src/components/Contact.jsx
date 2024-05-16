@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, TextField, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { init, send } from "emailjs-com";
 
-const Contact = ({ itemData, infoText, size }) => {
+const Contact = ({ infoText, size, bgImage }) => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [formSucces, setFormSucces] = useState(false);
@@ -39,25 +39,23 @@ const Contact = ({ itemData, infoText, size }) => {
     <Box className="main-flex" sx={{ flexDirection: "row" }}>
       <Box className="contact-main-flex">
         <Box sx={{ maxWidth: "50%", display: "flex" }}>
-          {size.width > 700 && <img className="info-image" src={itemData[9].img.original} />}
+          {size.width > 700 && <img className="info-image" src={bgImage.img.original} />}
         </Box>
         <Box className="info-form-container">
           {/* INFO TEXT */}
-          <Box className="info-box">
-            <Accordion defaultExpanded>
-              <AccordionSummary>
-                <Typography variant="h5">My Photography</Typography>
+          <Box className="info-box" sx={{ height: "300px" }}>
+            <Accordion>
+              <AccordionSummary sx={{ overflow: "auto" }}>
+                <Typography variant="h5">My View on Photography</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText.generalInfo }}></Typography>
               </AccordionDetails>
             </Accordion>
-
             {/* {infoText} */}
-
             <Accordion>
               <AccordionSummary>
-                <Typography variant="h5">Technical Stuff and Website Information</Typography>
+                <Typography variant="h5">Website Information and Development Details</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText.webDev }}></Typography>

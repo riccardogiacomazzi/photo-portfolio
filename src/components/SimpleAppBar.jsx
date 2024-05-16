@@ -3,12 +3,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import { useState, useEffect } from "react";
 
 const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }) => {
@@ -36,7 +34,7 @@ const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".01rem",
               color: "inherit",
               textDecoration: "none",
               cursor: "pointer",
@@ -77,6 +75,7 @@ const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
               letterSpacing: ".0.5rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
           >
             {siteName}

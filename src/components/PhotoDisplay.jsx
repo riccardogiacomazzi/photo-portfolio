@@ -4,10 +4,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import MosaicDisplay from "./MosaicDisplay";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
-import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
-import { SettingsInputHdmiOutlined } from "@mui/icons-material";
 
-const PhotoDisplay = ({ itemData, size }) => {
+const PhotoDisplay = ({ itemData, size, setBgImage }) => {
   const [active, setActive] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [zoom, setZoom] = useState(false);
@@ -26,8 +24,10 @@ const PhotoDisplay = ({ itemData, size }) => {
       return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
     }
 
+    let randomIndex = getRandomInt(0, itemData.length);
     if (itemData.length > 0) {
-      setSelectedImage(itemData[getRandomInt(0, itemData.length)]);
+      setSelectedImage(itemData[randomIndex]);
+      setBgImage(itemData[randomIndex]);
     }
   }, [itemData]);
 

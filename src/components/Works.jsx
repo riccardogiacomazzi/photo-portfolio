@@ -5,10 +5,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const Works = ({ itemData, visibleTags, size }) => {
-  // const maxIndex = size.width > 700 ? 3 : 1;
   const [indexShow, setIndexShow] = useState({ min: 0, max: 1 });
   const [selectedImage, setSelectedImage] = useState();
-  const [selectedImageLinks, setSelectedImageLinks] = useState([]);
   const [zoom, setZoom] = useState(false);
 
   const boxRef = useRef(null);
@@ -122,7 +120,10 @@ const Works = ({ itemData, visibleTags, size }) => {
           <Box
             key={index}
             className="box-tag"
-            sx={{ width: selectedImage ? (size.width > 700 ? "25%" : "100%") : size.width > 700 ? "50%" : "100%" }}
+            sx={{
+              width: selectedImage ? (size.width > 700 ? "25%" : "100%") : size.width > 700 ? "50%" : "100%",
+              cursor: selectedImage ? "pointer" : "zoom-in",
+            }}
             ref={boxRef}
           >
             <ImageList variant="masonry" cols={1} gap={5}>
@@ -164,6 +165,7 @@ const Works = ({ itemData, visibleTags, size }) => {
           className="big-photo-container-works"
           sx={{
             flexGrow: !selectedImage ? "initial" : 1,
+            cursor: zoom === true ? "zoom-out" : "zoom-in",
           }}
         >
           {/* conditionally renderes big image clicked */}

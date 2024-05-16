@@ -39,7 +39,7 @@ Feel free to check my <a href="https://www.linkedin.com/in/riccardogiacomazzi/">
   <br/>
   <br/>
   
-  My style is rooted in street photography. I am also very passionate about architectural photography and capturing sneaky portraits of people going about their lives.
+  My style is rooted in street photography. I am also very passionate about architectural photography and capturing portraits of people going about their lives.
   
   <br/>
   <br/>
