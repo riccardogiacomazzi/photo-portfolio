@@ -20,4 +20,5 @@ Features and Stack:
 # Setup
 
 - src/services/flickrService.js needs to receive the variables VITE_API_KEY and VITE_USER_ID from a .env file.
+- src/component/Contact.jsx need to receive the variables VITE_EMAILJS_SERVICE_KEY and VITE_EMAILJS_TEMPLATE_KEY from a .env file.
 
