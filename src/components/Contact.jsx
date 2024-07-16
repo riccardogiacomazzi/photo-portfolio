@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, TextField, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { init, send } from "emailjs-com";
 
 const Contact = ({ infoText, size, bgImage }) => {
@@ -38,14 +39,14 @@ const Contact = ({ infoText, size, bgImage }) => {
   return (
     <Box className="main-flex" sx={{ flexDirection: "row" }}>
       <Box className="contact-main-flex">
-        <Box sx={{ maxWidth: "50%", display: "flex" }}>
+        <Box sx={{ height: "90vh", display: "flex", margin: "0 auto" }}>
           {size.width > 700 && <img className="info-image" src={bgImage.img.original} />}
         </Box>
         <Box className="info-form-container">
           {/* INFO TEXT */}
           <Box className="info-box" sx={{ height: "300px" }}>
             <Accordion>
-              <AccordionSummary sx={{ overflow: "auto" }}>
+              <AccordionSummary sx={{ overflow: "auto" }} expandIcon={<ArrowDropDownIcon />}>
                 <Typography variant="h5">My View on Photography</Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -54,7 +55,7 @@ const Contact = ({ infoText, size, bgImage }) => {
             </Accordion>
             {/* {infoText} */}
             <Accordion>
-              <AccordionSummary>
+              <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
                 <Typography variant="h5">Website Information and Development Details</Typography>
               </AccordionSummary>
               <AccordionDetails>
