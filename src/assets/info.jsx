@@ -34,7 +34,7 @@ Feel free to check my <a href="https://www.linkedin.com/in/riccardogiacomazzi/">
   <br/>
   <br/>
   
-  My gear includes a FujiFilm X-T1 digital camera, a Rollei 35 analog camera, a Ricoh Caplio G4 vintage CCD sensor digital camera, several Fujica lenses and a few self-made custom lenses (pinhole, lenses disassembled from broken cameras).
+  My gear includes a FujiFilm X-T1 digital camera used in combination with several Fujica lenses and a few self-made custom lenses (pinhole, lenses disassembled from broken cameras), a Rollei 35 analog camera, a Ricoh Caplio G4 and a Sony Cybershot.
   
   <br/>
   <br/>

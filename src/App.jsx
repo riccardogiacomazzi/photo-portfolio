@@ -20,7 +20,7 @@ function App() {
   //SETUP
   const siteName = "Photo Portfolio";
   const pages = ["Albums", "Info"];
-  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner"];
+  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner", "Digicam"];
   const infoText = info;
 
   //photo fetching on app rendering
