@@ -1,7 +1,9 @@
 import "./App.css";
+
 import info from "./assets/info";
 import SimpleAppBar from "./components/SimpleAppBar";
 import { useState, useEffect } from "react";
+import { useImages } from "./components/ImageContext";
 import FlickrAPI from "./services/flickrService";
 import PhotoDisplay from "./components/PhotoDisplay";
 import { useWindowSize } from "@uidotdev/usehooks";
@@ -23,15 +25,18 @@ function App() {
   const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner", "Digicam"];
   const infoText = info;
 
-  //photo fetching on app rendering
-  useEffect(() => {
-    const flickrService = async () => {
-      const data = await FlickrAPI.FlickrPhotos();
-      setItemData(data.itemData);
-    };
+  //photo fetching and caching
 
-    flickrService();
-  }, []);
+  // useEffect(() => {
+  //   const flickrService = async () => {
+  //     const data = await FlickrAPI.FlickrPhotos();
+  //     setItemData(data.itemData);
+  //   };
+
+  //   flickrService();
+  // }, []);
+
+  const cachedImages = useImages();
 
   return (
     <div>
@@ -42,16 +47,15 @@ function App() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-
+      {menuOpen && (
+        <Menu pages={pages} displayPage={displayPage} setDisplayPage={setDisplayPage} setMenuOpen={setMenuOpen} />
+      )}
       {displayPage === "Home" && menuOpen === false && (
-        <PhotoDisplay itemData={itemData} size={size} setBgImage={setBgImage} />
+        <PhotoDisplay itemData={cachedImages} size={size} setBgImage={setBgImage} />
       )}
       {displayPage === "Info" && menuOpen === false && <Contact infoText={infoText} size={size} bgImage={bgImage} />}
       {displayPage === "Albums" && menuOpen === false && (
-        <Works itemData={itemData} visibleTags={visibleTags} size={size} />
-      )}
-      {menuOpen && (
-        <Menu pages={pages} displayPage={displayPage} setDisplayPage={setDisplayPage} setMenuOpen={setMenuOpen} />
+        <Works itemData={cachedImages} visibleTags={visibleTags} size={size} />
       )}
     </div>
   );
