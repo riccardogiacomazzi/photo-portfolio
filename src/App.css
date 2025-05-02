@@ -2,6 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #213547 transparent; /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #213547;
+  border-radius: 10px;
+  border: none;
 }
 
 #root {
@@ -9,8 +27,28 @@
   height: 100vh;
   position: relative;
   font-family: "Raleway", sans-serif;
-  background: radial-gradient(circle at 0% 40%, rgb(53, 46, 185) 0%, transparent 70%),
+  background: radial-gradient(circle at -10% 10%, rgb(53, 46, 185) 0%, transparent 65%),
     radial-gradient(circle at 100% 100%, rgb(21, 50, 79) 0%, transparent 70%); /* fallback background color */
+}
+
+/* main page mosaic horizontal */
+.no-bg-hover {
+  background-color: transparent !important;
+}
+
+.no-bg-hover:hover,
+.no-bg-hover:focus,
+.no-bg-hover:active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.no-bg-hover img {
+  transition: opacity 0.3s ease; /* Add transition for smooth opacity change */
+}
+
+.no-bg-hover:hover img {
+  opacity: 0.6; /* Adjust opacity to desired value */
 }
 
 @font-face {
@@ -94,6 +132,14 @@
   display: none;
 }
 
+.image-mosaic {
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.image-mosaic:hover {
+  opacity: 0.7; /* Reduce opacity on hover */
+}
+
 .bottom-fixed-box {
   position: sticky;
   bottom: 0;
@@ -147,87 +193,6 @@
 
   .bottom-fixed-box {
     justify-content: space-between;
-  }
-}
-
-/* CONTACT FORM */
-.contact-main-flex {
-  display: flex;
-  width: 100%;
-  max-height: 100%;
-}
-
-.info-form-container {
-  max-height: 100vh;
-  width: 900px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-}
-
-.info-box {
-  height: 50%;
-  width: 70%;
-  margin: 20px auto;
-  overflow: auto;
-}
-
-.contact-form {
-  width: 70%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  border: 0.5px solid;
-  padding: 20px;
-}
-
-.text-input {
-  width: 90%;
-}
-
-.info-image {
-  height: auto;
-  width: auto;
-  max-height: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  margin: auto;
-  padding: 20px;
-}
-
-@media (max-width: 700px) {
-  .contact-main-flex {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    max-height: 100%;
-  }
-
-  .contact-main-flex .info-form-container {
-    height: 90vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .info-image {
-    height: 50%;
-  }
-
-  .contact-main-flex .info-form-container .contact-form {
-    width: 100%;
-    max-height: 40vh;
-    border: none;
-    margin-bottom: 50px;
-  }
-
-  .contact-main-flex .info-form-container .info-box {
-    width: 80%;
   }
 }
 

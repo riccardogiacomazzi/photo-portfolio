@@ -9,8 +9,8 @@ import FlickrAPI from "./services/flickrService";
 import PhotoDisplay from "./components/PhotoDisplay";
 import { useWindowSize } from "@uidotdev/usehooks";
 import Works from "./components/Works";
-import Contact from "./components/Contact";
-import Menu from "./components/Menu";
+import Contact from "./components/Contact/Contact";
+import Menu from "./components/Menu/Menu";
 
 function App() {
   const [displayPage, setDisplayPage] = useState("Home");

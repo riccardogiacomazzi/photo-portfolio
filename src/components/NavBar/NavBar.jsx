@@ -1,6 +1,4 @@
 import "./NavBar.css";
-import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
 
 const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }) => {
   const handlePageChange = (page) => {
@@ -9,6 +7,7 @@ const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
 
   const handleMenuOpen = () => {
     setMenuOpen(!menuOpen);
+    console.log(menuOpen);
   };
 
   return (
@@ -21,11 +20,7 @@ const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
           {page}
         </div>
       ))}
-      {size.width > 764 && (
-        <div className="menu-button" onClick={handleMenuOpen}>
-          "wewe"
-        </div>
-      )}
+      {size.width > 764 && <div className={`menu-button ${menuOpen ? "" : "clicked"}`} onClick={handleMenuOpen}></div>}
     </div>
   );
 };

@@ -25,6 +25,7 @@ const MosaicDisplay = ({ itemData, setSelectedImage, size }) => {
             <div key={index}>
               <ListItem role="none">
                 <ListItemButton
+                  className="no-bg-hover"
                   onClick={() => handleMosaicClick(index)}
                   role="menuitem"
                   component="a"
