@@ -47,7 +47,7 @@ const Contact = ({ infoText, size, bgImage }) => {
           <Box className="info-box" sx={{ height: "300px" }}>
             <Accordion>
               <AccordionSummary sx={{ overflow: "auto" }} expandIcon={<ArrowDropDownIcon />}>
-                <Typography variant="h5">My View on Photography</Typography>
+                <Typography variant="h5">Info</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography component="div" dangerouslySetInnerHTML={{ __html: infoText.generalInfo }}></Typography>

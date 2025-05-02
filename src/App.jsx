@@ -2,6 +2,7 @@ import "./App.css";
 
 import info from "./assets/info";
 import SimpleAppBar from "./components/SimpleAppBar";
+import NavBar from "./components/NavBar/NavBar";
 import { useState, useEffect } from "react";
 import { useImages } from "./components/ImageContext";
 import FlickrAPI from "./services/flickrService";
@@ -20,9 +21,9 @@ function App() {
   const size = useWindowSize();
 
   //SETUP
-  const siteName = "Photo Portfolio";
+  const siteName = "Riccardo Giacomazzi";
   const pages = ["Albums", "Info"];
-  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner", "Digicam"];
+  const visibleTags = ["Landscapes", "Urban", "People", "TouchDesigner"];
   const infoText = info;
 
   //photo fetching and caching
@@ -36,11 +37,23 @@ function App() {
   //   flickrService();
   // }, []);
 
+  useEffect(() => {
+    console.log(displayPage);
+  }, [displayPage]);
+
   const cachedImages = useImages();
 
   return (
     <div>
-      <SimpleAppBar
+      {/* <SimpleAppBar
+        siteName={siteName}
+        pages={pages}
+        setDisplayPage={setDisplayPage}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+      /> */}
+      <NavBar
+        size={size}
         siteName={siteName}
         pages={pages}
         setDisplayPage={setDisplayPage}

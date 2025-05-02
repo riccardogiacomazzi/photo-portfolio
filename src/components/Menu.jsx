@@ -7,7 +7,7 @@ const Menu = ({ pages, setDisplayPage, setMenuOpen }) => {
   };
 
   return (
-    <Box className="main-flex">
+    <Box className="menu-gradient">
       <Button onClick={() => handlePageSelect("Home")}>
         <Typography>Home</Typography>
       </Button>

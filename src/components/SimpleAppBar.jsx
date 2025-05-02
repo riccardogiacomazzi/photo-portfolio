@@ -82,9 +82,9 @@ const SimpleAppBar = ({ menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
           </Typography>
           {/* WEB VERSION PAGE BUTTONS */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
-                key={page}
+                key={index}
                 onClick={() => handlePageChange(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
