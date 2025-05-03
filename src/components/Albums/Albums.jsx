@@ -1,10 +1,11 @@
+import "./Albums.css";
 import { useEffect, useRef, useState, Component } from "react";
 import { Box, Button, Typography, ImageList, ImageListItem, Skeleton, Modal } from "@mui/material";
 import { useSwipeable } from "react-swipeable";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const Works = ({ itemData, visibleTags, size }) => {
+const Albums = ({ itemData, visibleTags, size }) => {
   const [indexShow, setIndexShow] = useState({ min: 0, max: 1 });
   const [selectedImage, setSelectedImage] = useState();
   const [zoom, setZoom] = useState(false);
@@ -128,7 +129,7 @@ const Works = ({ itemData, visibleTags, size }) => {
           >
             <ImageList variant="masonry" cols={1} gap={5}>
               {item.img.map((img, index) => (
-                <ImageListItem key={index} onClick={() => handleSelectImage(img)} className="image-mosaic">
+                <ImageListItem key={index} onClick={() => handleSelectImage(img)}>
                   <img srcSet={`${img.original}`} src={`${img.original}`} alt={img.title} loading="lazy" />
                 </ImageListItem>
               ))}
@@ -185,4 +186,4 @@ const Works = ({ itemData, visibleTags, size }) => {
   );
 };
 
-export default Works;
+export default Albums;

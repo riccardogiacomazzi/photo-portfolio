@@ -1,0 +1,16 @@
+/* PHOTO DISPLAY */
+.big-photo-container {
+  width: 100vw;
+  height: 600px;
+  overflow: auto;
+}
+
+.button-display {
+  height: 600px;
+}
+
+@media (max-width: 700px) {
+  .big-photo-container {
+    width: 95vw;
+  }
+}

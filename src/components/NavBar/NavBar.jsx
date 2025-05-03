@@ -1,13 +1,11 @@
 import "./NavBar.css";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }) => {
+  const navigate = useNavigate();
   const handlePageChange = (page) => {
-    setDisplayPage(page);
-  };
-
-  const handleMenuOpen = () => {
-    setMenuOpen(!menuOpen);
-    console.log(menuOpen);
+    const path = page === "Home" ? "/" : `/${page.toLowerCase()}`;
+    navigate(path);
   };
 
   return (

@@ -1,0 +1,14 @@
+.button-works {
+  height: 80vh;
+}
+
+.box-tag {
+  height: 80vh;
+  margin: 20px;
+  width: 45%;
+  overflow: auto;
+}
+
+.box-tag::-webkit-scrollbar {
+  display: none;
+}

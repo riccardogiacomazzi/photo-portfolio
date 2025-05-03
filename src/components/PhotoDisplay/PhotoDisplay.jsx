@@ -1,7 +1,8 @@
+import "./PhotoDisplay.css";
 import { Box, Button, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import MosaicDisplay from "./MosaicDisplay";
+import MosaicDisplay from "../MosaicDisplay/MosaicDisplay";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 

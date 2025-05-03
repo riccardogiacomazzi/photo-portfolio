@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import Box from "@mui/joy/Box";
+import "./MosaicDisplay.css";
+import { useEffect, useRef } from "react";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import ListItemButton from "@mui/joy/ListItemButton";
@@ -9,16 +9,30 @@ const MosaicDisplay = ({ itemData, setSelectedImage, size }) => {
     setSelectedImage(itemData[index]);
   };
 
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+
+    const handleWheel = (e) => {
+      if (e.deltaY === 0) return;
+      e.preventDefault();
+      container.scrollLeft += e.deltaY;
+    };
+
+    if (container) {
+      container.addEventListener("wheel", handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, []);
+
   return (
-    <Box
-      className="horizontal-list"
-      id="horizontal-scroll"
-      component="nav"
-      aria-label="My site"
-      sx={{
-        overflowX: "auto",
-      }}
-    >
+    <div ref={scrollRef} className="horizontal-list">
       {itemData && (
         <List role="menubar" orientation="horizontal">
           {itemData.map((item, index) => (
@@ -38,7 +52,7 @@ const MosaicDisplay = ({ itemData, setSelectedImage, size }) => {
           ))}
         </List>
       )}
-    </Box>
+    </div>
   );
 };
 
