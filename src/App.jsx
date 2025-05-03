@@ -44,7 +44,7 @@ function App() {
   const cachedImages = useImages();
 
   return (
-    <div>
+    <div className="master">
       {/* <SimpleAppBar
         siteName={siteName}
         pages={pages}
@@ -52,14 +52,16 @@ function App() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       /> */}
-      <NavBar
-        size={size}
-        siteName={siteName}
-        pages={pages}
-        setDisplayPage={setDisplayPage}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
+      <div className="navbar-container">
+        <NavBar
+          size={size}
+          siteName={siteName}
+          pages={pages}
+          setDisplayPage={setDisplayPage}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+      </div>
       {menuOpen && (
         <Menu pages={pages} displayPage={displayPage} setDisplayPage={setDisplayPage} setMenuOpen={setMenuOpen} />
       )}

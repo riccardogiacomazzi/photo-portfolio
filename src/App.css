@@ -67,6 +67,22 @@
 
 /* ////////////////////////////////////////////////////////// */
 /* Styling for components _> common styling */
+.master {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw; /* Ensure the page takes up the full height of the viewport */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.navbar-container {
+  position: fixed; /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
 .main-flex {
   display: flex;
   flex-direction: column;
@@ -74,7 +90,6 @@
   align-items: center;
   width: 100%;
   height: 90vh;
-  position: absolute;
   bottom: 0;
 }
 
@@ -207,9 +222,11 @@
 }
 
 .image-big-zoom {
-  width: 100%;
-  overflow: scroll;
-  cursor: zoom-out;
+  max-width: 100%; /* Keep width as 100% of viewport */
+  height: auto; /* Maintain aspect ratio */
+  /* transform: scale(1.5); Zoom in by 50%, adjust as needed */
+  transform-origin: center center; /* Zoom from the center */
+  cursor: zoom-out; /* Change cursor to indicate zoom-out */
 }
 
 @media (max-width: 700px) {

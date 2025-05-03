@@ -11,7 +11,7 @@ const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
   };
 
   return (
-    <div className="test">
+    <div className="main">
       <div className="site-name" onClick={() => handlePageChange("Home")}>
         {siteName}
       </div>
@@ -20,7 +20,6 @@ const NavBar = ({ size, menuOpen, setMenuOpen, setDisplayPage, siteName, pages }
           {page}
         </div>
       ))}
-      {size.width > 764 && <div className={`menu-button ${menuOpen ? "" : "clicked"}`} onClick={handleMenuOpen}></div>}
     </div>
   );
 };
