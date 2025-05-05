@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     const randomIntBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-    const randomImage = randomIntBetween(0, cachedImages.length);
+    const randomImage = randomIntBetween(0, cachedImages.length - 1);
     setBgImage(cachedImages[randomImage]);
   }, []);
 
