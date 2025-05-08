@@ -109,7 +109,12 @@ const PhotoDisplay = ({ itemData, size, setBgImage }) => {
         )}
       </Box>
       <Box>
-        <MosaicDisplay itemData={itemData} size={size} setSelectedImage={setSelectedImage} />
+        <MosaicDisplay
+          itemData={itemData}
+          size={size}
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+        />
       </Box>
     </div>
   );
