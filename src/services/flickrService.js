@@ -16,13 +16,24 @@ const FlickrPhotos = async () => {
       const response = await axios.get(
         `https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${apiKey}&photo_id=${photoId}&format=json&nojsoncallback=1`
       );
-      const originalSize = response.data.sizes.size.find((size) => size.label === "Original");
-      const largeSize = response.data.sizes.size.find((size) => size.label === "Large");
-      const smallSize = response.data.sizes.size.find((size) => size.label === "Small");
 
-      return { small: smallSize.source, large: largeSize.source, original: originalSize.source };
+      const sizes = response.data.sizes?.size || [];
+
+      const getSize = (label) => sizes.find((s) => s.label === label)?.source || null;
+
+      const small = getSize("Small");
+      const large = getSize("Large");
+      const original = getSize("Original");
+
+      if (!small && !large && !original) {
+        console.warn(`No valid sizes found for photo ID: ${photoId}`);
+        return null;
+      }
+
+      return { small, large, original };
     } catch (error) {
-      console.log(error.message);
+      console.error(`Error fetching sizes for photo ID ${photoId}:`, error.message);
+      return null;
     }
   };
 
@@ -63,7 +74,7 @@ const FlickrPhotos = async () => {
       const results = await Promise.all(promises);
       itemData.push(...results);
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
 

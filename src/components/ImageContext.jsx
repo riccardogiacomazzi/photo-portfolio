@@ -9,19 +9,17 @@ export const ImageProvider = ({ children }) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    if (images.length === 0) {
-      flickrService(); // Function to fetch images from API
-    }
-  }, [images]);
+    const fetchImages = async () => {
+      try {
+        const data = await FlickrAPI.FlickrPhotos();
+        setImages(data.itemData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const flickrService = async () => {
-    try {
-      const data = await FlickrAPI.FlickrPhotos();
-      setImages(data.itemData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    fetchImages();
+  }, []);
 
   return <ImageContext.Provider value={images}>{children}</ImageContext.Provider>;
 };

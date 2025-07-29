@@ -130,7 +130,12 @@ const Works = ({ itemData, visibleTags, size }) => {
             <ImageList variant="masonry" cols={1} gap={5}>
               {item.img.map((img, index) => (
                 <ImageListItem key={index} onClick={() => handleSelectImage(img)} className="image-mosaic">
-                  <img srcSet={`${img.original}`} src={`${img.original}`} alt={img.title} loading="lazy" />
+                  <img
+                    srcSet={`${img.original || img.large}`}
+                    src={`${img.original || img.large}`}
+                    alt={img.title}
+                    loading="lazy"
+                  />
                 </ImageListItem>
               ))}
             </ImageList>

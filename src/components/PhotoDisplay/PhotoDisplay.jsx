@@ -93,7 +93,7 @@ const PhotoDisplay = ({ itemData, size, setBgImage }) => {
           <img
             className={zoom === false ? "image-big" : "image-big-zoom"}
             onClick={handleZoom}
-            src={`${selectedImage.img.original}`}
+            src={`${selectedImage.img.original || selectedImage.img.large}`}
             alt={`${selectedImage.title}`}
             loading="lazy"
           />
