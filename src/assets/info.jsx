@@ -1,6 +1,6 @@
 const info = {
   webDev: `
-This portfolio has been developed in React and JavaScript. It features integration with Flickr's API to retrieve the displayed pictures and their properties.
+This portfolio has been developed in React. It features integration with Flickr's API to retrieve the displayed pictures and their properties.
 <br />
 <br />
 On the homepage, users can view all the pictures available on the website. Clicking on any of them displays a zoomed-in version.<br />
@@ -20,12 +20,8 @@ On the "Info" page, a description is displayed.<br />
 </li>
 <li>The app is hosted on Firebase.</li>
 <br />
+<br /><a href="https://github.com/riccardogiacomazzi/photo-portfolio">Github repository</a>.
 <br />
-If you're interested in getting to know more about my Web Development works, take a look at my <a href="https://riccardogiacomazzi-df429.web.app/">Portfolio</a> and <a href="https://tracya.net/"> music project webpage</a>.
-<br />Feel free to check my <a href="https://www.linkedin.com/in/riccardogiacomazzi/">Linkedin</a> and <a href="https://github.com/riccardogiacomazzi">Github</a> pages.
-<br />
-<br />
-<i>Website fully developed and designed by Riccardo Giacomazzi.</i>
 `,
   generalInfo: `This website contains an expanding selection of photographs shot after 2021, portraying various locations and taken with a wide array of cameras and lenses.
 
@@ -38,7 +34,9 @@ If you're interested in getting to know more about my Web Development works, tak
   <br/>
   
   This website also features some digital works. I'm passionate about the intersection between technology and art, and I've found in TouchDesigner a powerful and versatile tool to materialize my aesthetic in a way not always possible with photography.
-  `,
+  <br/>
+  <br/>
+  <p><a href="mailto:riccardogiacomazzi93@gmail.com">Get in touch<a/></p>`,
 };
 
 export default info;

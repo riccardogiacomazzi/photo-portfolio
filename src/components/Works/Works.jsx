@@ -180,8 +180,8 @@ const Works = ({ itemData, visibleTags, size }) => {
               className={zoom === false ? "image-big" : "image-big-zoom-works"}
               style={{ margin: " auto" }}
               onClick={handleClickZoom}
-              srcSet={`${selectedImage.original}`}
-              src={`${selectedImage.original}`}
+              srcSet={`${selectedImage.original || selectedImage.large}`}
+              src={`${selectedImage.original || selectedImage.large}`}
               loading="lazy"
             />
           )}
